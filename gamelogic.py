@@ -28,6 +28,7 @@ class GameLogic:
         elif(self.tie):
             self.stopgame()
             self.root.print_winner(self.winner)
+        
 
             
     def stopgame(self):

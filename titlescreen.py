@@ -8,7 +8,7 @@ class titlescreen:
 
         self.welcome_label = Label(self.root, text="Welcome to TicTacToe!")
         self.cross_circle_label = Label(self.root, text="Do you want to be cross or circle?")
-        self.second_label = Label(self.root, text="You always go first.")
+        self.second_label = Label(self.root, text="You begin, but beginning turns alternate.")
         
         self.cross_button = Button(self.root, text="Cross", padx=10, pady=5, command=lambda: self.click('cross'))
         self.circle_button = Button(self.root, text="Circle", padx=10, pady=5, command=lambda: self.click('circle'))
