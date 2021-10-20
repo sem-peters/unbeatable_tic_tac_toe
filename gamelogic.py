@@ -1,3 +1,4 @@
+from tkinter import Label
 class GameLogic:
     def __init__(self, root, user):
         self.root = root
@@ -22,10 +23,18 @@ class GameLogic:
         self.checkwin()
         if(self.win):
             self.winner = image
-            self.root.stopgame("win")
+            self.stopgame()
+            self.root.print_winner(self.winner)
         elif(self.tie):
-            self.root.stopgame("tie")
+            self.stopgame()
+            self.root.print_winner(self.winner)
+
             
+    def stopgame(self):
+            for x in self.root.fields:
+                x.unb()
+
+
     def checkwin(self):
 
         #Check if any winning conditions are true: Numlock grid is used to resemble game grid, so 789 would be the top layer

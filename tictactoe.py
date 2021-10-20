@@ -1,7 +1,7 @@
 from tkinter import *
 from gamelogic import GameLogic
 from field import field
-class TicTacToeGUI:
+class TicTacToeGUI(Tk):
     def __init__(self, user):
         #this is empty because i got nothin yet
         self.root = Tk()
@@ -29,15 +29,28 @@ class TicTacToeGUI:
         self.fields = [self.field_1, self.field_2, self.field_3, self.field_4,
             self.field_5, self.field_6, self.field_7,self.field_8, self.field_9]
         
-    def stopgame(self, condition):
-        for x in self.fields:
-            x.unb()
-        if(condition == "win"):
-            winnertext = "We have a winner:\n" + self.game.winner 
-            self.winnerlabel = Label(self.root, text=winnertext, font=("Courier",12), relief="solid", borderwidth="3",padx=5,pady=5).grid(column=1,row=1)
+    def print_winner(self, winner):
+        if(winner == 'circle'):
+            winner_label = Label(self.root, text="We have a winner:\nCircle!", font=("Courier", 12), padx=10, pady=5, relief='solid', borderwidth=2)
+            winner_label.grid(column=1,row=1)
+        elif(winner == 'cross'):
+            winner_label = Label(self.root, text="We have a winner:\nCross!", font=("Courier", 12), padx=10, pady=5, relief='solid', borderwidth=2)
+            winner_label.grid(column=1,row=1)
         else:
-            tietext = "We have a tie!"
-            self.tielabel = Label(self.root, text=tietext, font=("Courier",12), relief="solid", borderwidth="3",padx=5,pady=5).grid(column=1,row=1)
+            winner_label = Label(self.root, text="We have a tie!", font=("Courier", 12), padx=10, pady=5, relief='solid', borderwidth=2)
+            winner_label.grid(column=1,row=1)
+
+        
+
+    # def stopgame(self, condition):
+    #     for x in self.fields:
+    #         x.unb()
+    #     if(condition == "win"):
+    #         winnertext = "We have a winner:\n" + self.game.winner 
+    #         self.winnerlabel = Label(self.root, text=winnertext, font=("Courier",12), relief="solid", borderwidth="3",padx=5,pady=5).grid(column=1,row=1)
+    #     else:
+    #         tietext = "We have a tie!"
+    #         self.tielabel = Label(self.root, text=tietext, font=("Courier",12), relief="solid", borderwidth="3",padx=5,pady=5).grid(column=1,row=1)
     def nothing(self):
         #purposely does nothing
         pass
