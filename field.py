@@ -4,7 +4,8 @@ from gamelogic import GameLogic
 
 class field(Canvas):
     
-    def __init__(self, master, width, height, c, r, game):
+    def __init__(self, master, width, height, c, r, game, id):
+        self.id = id
         self.game = game
         self.master = master
         self.width = width
@@ -19,7 +20,8 @@ class field(Canvas):
         self.canvas.create_image(0,0,anchor=NW, image=self.white)
         self.canvas.bind("<Button-1>", self.clickhandler)
         self.current_image = "white"
-
+    def unb(self):
+        self.canvas.unbind("<Button-1>")
     def turn_cross(self):
         self.canvas.create_image(0,0,anchor=NW, image=self.cross)
         self.current_image = "cross"
@@ -37,6 +39,9 @@ class field(Canvas):
         elif(self.game.turn == "cross" and self.current_image == "white"):
             self.turn_cross()
             self.game.switch_turn()
+        self.game.update(self.id, self.current_image)
+
+
         
 
 
