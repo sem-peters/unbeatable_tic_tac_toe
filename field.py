@@ -1,10 +1,11 @@
 from tkinter import *
 from gamelogic import GameLogic
-game = GameLogic()
+
 
 class field(Canvas):
     
-    def __init__(self, master, width, height, c, r):
+    def __init__(self, master, width, height, c, r, game):
+        self.game = game
         self.master = master
         self.width = width
         self.height = height
@@ -17,19 +18,25 @@ class field(Canvas):
         self.circle = PhotoImage(master=self.master, file="images/circle.png")
         self.canvas.create_image(0,0,anchor=NW, image=self.white)
         self.canvas.bind("<Button-1>", self.clickhandler)
+        self.current_image = "white"
 
     def turn_cross(self):
         self.canvas.create_image(0,0,anchor=NW, image=self.cross)
+        self.current_image = "cross"
     def turn_circle(self):
         self.canvas.create_image(0,0,anchor=NW, image=self.circle)
+        self.current_image = "circle"
     def turn_white(self):
         self.canvas.create_image(0,0,anchor=NW, image=self.white)
+        self.current_image = "white"
     
     def clickhandler(self, event):
-        if(game.turn == "circle"):
+        if(self.game.turn == "circle" and self.current_image == "white"):
             self.turn_circle()
-            game.switch_turn()
-        else:
+            self.game.switch_turn()
+        elif(self.game.turn == "cross" and self.current_image == "white"):
             self.turn_cross()
-            game.switch_turn()
+            self.game.switch_turn()
+        
+
 

@@ -7,3 +7,4 @@ class GameLogic:
             self.turn = "cross"
         else:
             self.turn = "circle"
+
