@@ -2,14 +2,21 @@ from tkinter import *
 from gamelogic import GameLogic
 from field import field
 class TicTacToeGUI:
-    def __init__(self) -> None:
+    def __init__(self, user):
         #this is empty because i got nothin yet
         self.root = Tk()
         self.root.title("TicTacToe by Sem Peters")
 
+        # The user is the choice of either circle or cross.
+        # If it's empty, the user has clicked the exit button on the first screen,
+        # indicating they don't want to play.
+        self.user = user 
+        if(self.user == ''):
+            quit()
+        
         # Gui works as follows:
         # Field_1 - Field_9 are the fields in which X or O is placed.
-        self.game = GameLogic(self)
+        self.game = GameLogic(self, self.user)
         self.field_1 = field(self.root, 200, 200, 0, 0, self.game, 1)
         self.field_2 = field(self.root, 200, 200, 1, 0, self.game, 2)
         self.field_3 = field(self.root, 200, 200, 2, 0, self.game, 3)

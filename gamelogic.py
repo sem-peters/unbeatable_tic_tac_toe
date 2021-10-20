@@ -1,8 +1,13 @@
 class GameLogic:
-    def __init__(self, root):
+    def __init__(self, root, user):
         self.root = root
         self.winner = ""
-        self.turn = "circle"
+
+        # Self.User is inherited from titlescreen, it's the choice of cross or circle.
+        # Currently, the user always starts. The AI (that's yet to be programmed) will take next turn,
+        # once second games have been implemented.
+        self.user = user
+        self.turn = self.user
         self.win = False
         self.tie = False
         self.fields = ['white','white','white','white','white','white','white','white','white']
