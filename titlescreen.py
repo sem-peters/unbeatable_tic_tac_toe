@@ -3,6 +3,7 @@ class titlescreen:
     def __init__(self):
         self.root = Tk()
         self.root.title("TicTacToe by Sem")
+        self.root.resizable(False, False) # Frame is made specifically for certain height and width, not responsive.
         
         self.user = ''
 

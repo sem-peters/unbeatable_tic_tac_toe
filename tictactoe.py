@@ -5,7 +5,9 @@ class TicTacToeGUI(Tk):
     def __init__(self, user, score):
         #this is empty because i got nothin yet
         self.root = Tk()
+        self.root.protocol("WM_DELETE_WINDOW", func=self.stop)
         self.root.title("TicTacToe by Sem Peters")
+        self.root.resizable(False, False) # Frame is made specifically for certain height and width, not responsive.
         
         self.score = score
         self.play_again = False
@@ -16,6 +18,7 @@ class TicTacToeGUI(Tk):
 
         self.startinguser = user
         
+        # This determines who starts.
         if((self.startinguser == 'circle') and (self.score.counter % 2 == 0)):
             self.game = GameLogic(self, 'circle')
         elif((self.startinguser == 'circle') and (self.score.counter % 2 != 0)):
@@ -40,6 +43,9 @@ class TicTacToeGUI(Tk):
         self.field_9 = field(self.root, 200, 200, 2, 2, self.game, 9)
         self.fields = [self.field_1, self.field_2, self.field_3, self.field_4,
             self.field_5, self.field_6, self.field_7,self.field_8, self.field_9]
+        
+    def run(self):
+        self.root.mainloop()
         
     def print_winner(self, winner):
         self.score.counter += 1
