@@ -22,11 +22,11 @@ class AI:
         try:
             r = random.choice(openfields)
             print("Random number: ", r)
-        
+            
             if(self.image == 'cross'):
+                
                 self.parent.parent.fields[r].turn_cross()
             elif(self.image == 'circle'):
-                
                 self.parent.parent.fields[r].turn_circle()
 
             self.parent.update(openfields[openfields.index(r)], self.image)

@@ -5,9 +5,9 @@ from gamelogic import GameLogic
 # There are 9 fields. Each begins 'white', they can change to 'cross' and 'circle'.
 class field(Canvas):
     
-    def __init__(self, master, width, height, c, r, game, id):
+    def __init__(self, master, width, height, c, r, parent, id):
         self.id = id
-        self.game = game
+        self.parent = parent
         self.master = master
         self.width = width
         self.height = height
@@ -38,15 +38,15 @@ class field(Canvas):
     
     
     def clickhandler(self, event):
-        if(self.game.turn == self.game.user):
+        if(self.parent.game.turn == self.parent.game.user):
             if(self.current_image == "white"):
-                if(self.game.user == 'circle'):
+                if(self.parent.game.user == 'circle'):
                     self.turn_circle()
                 else:
                     self.turn_cross()
-                self.game.update(self.id, self.current_image)
-                if(not(self.game.win or self.game.tie)):
-                    self.game.switch_turn()
+                self.parent.game.update(self.id, self.current_image)
+                if(not(self.parent.game.win or self.parent.game.tie)):
+                    self.parent.game.switch_turn()
 
 
         
