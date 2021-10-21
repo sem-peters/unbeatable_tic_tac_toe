@@ -23,11 +23,11 @@ class TicTacToeGUI(Tk):
         
         # This determines who starts.
         
-        #if(self.score.counter % 2 == 0):
-            #self.game = GameLogic(self, self.user, self.user, self.ai)
-        #elif(self.score.counter % 2 != 0):
-            #self.game = GameLogic(self, self.ai, self.user, self.ai)
-        self.game = GameLogic(self, self.user, self.user, self.ai)
+        if(self.score.counter % 2 == 0):
+            self.game = GameLogic(self, self.user, self.user, self.ai)
+        elif(self.score.counter % 2 != 0):
+            self.game = GameLogic(self, self.ai, self.user, self.ai)
+        #self.game = GameLogic(self, self.user, self.user, self.ai)
         
         # Gui works as follows:
         # Field_1 - Field_9 are the fields in which X or O is placed.
@@ -66,7 +66,6 @@ class TicTacToeGUI(Tk):
         stop_button = Button(self.root, text="Quit", command=self.stop).grid(column=1,row=2)
     
     def play(self):
-        
         self.play_again = True
         self.root.destroy()
     def stop(self):

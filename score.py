@@ -9,16 +9,10 @@ class score():
         self.user_score = 0
         self.tie = 0
         self.counter = 0
-        print("in __init__():")
-        print("User score: ", self.user_score)
-        print("AI scoreL ", self.ai_score)
         if(self.user == ''):
             quit()   
 
     def run(self):
-        print("in score.run()")
-        print("User score: ", self.user_score)
-        print("AI score ", self.ai_score)
         self.root = Tk()
         self.root.title("Scoreboard")
         self.root.attributes('-topmost',True)
@@ -39,7 +33,6 @@ class score():
         self.label_ai.grid(column=4,row=1,columnspan=2)
 
         self.root.protocol("WM_DELETE_WINDOW", func=self.stop)
-        print(self.user_score)
         self.root.mainloop()
         
     
@@ -51,9 +44,6 @@ class score():
         self.root.destroy()
         quit()
     def refresh(self):
-        print("in refresh()")
-        print("User score: ", self.user_score)
-        print("AI scoreL ", self.ai_score)
         self.ai_wins = "AI wins: "+str(self.ai_score)
         self.user_wins = "Your wins: "+str(self.user_score)
         self.ties = "Ties: "+str(self.tie)
