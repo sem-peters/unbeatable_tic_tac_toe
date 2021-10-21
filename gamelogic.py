@@ -1,35 +1,39 @@
 from tkinter import Label
+from ai import AI
 class GameLogic:
     def __init__(self, root, startinguser, user, ai):
         self.parent = root
         self.winner = ""
-
+        self.startinguser = startinguser
         # Self.User is inherited from titlescreen, it's the choice of cross or circle.
         # Currently, the user always starts. The AI (that's yet to be programmed) will take next turn,
         # once second games have been implemented.
         self.user = user
         self.ai = ai
-        self.turn = self.user
+        self.turn = self.startinguser
         self.win = False
         self.tie = False
         self.fields = ['white','white','white','white','white','white','white','white','white']
-    def switch_turn(self):
-        if self.turn == "circle":
-            self.turn = "cross"
-        else:
-            self.turn = "circle"
-    def update(self, id, image):
-        self.fields[id-1] = image
-
-        self.checkwin()
-        if(self.win or self.tie):
-            self.stopgame()
-            self.parent.print_winner(self.winner)
-
+        
         
 
-            
-    def stopgame(self):
+    def switch_turn(self):
+
+        self.opponentAI = AI(self, self.ai)
+        if self.turn == self.parent.user:
+            self.turn = self.parent.ai
+            self.opponentAI.make_move()
+        else:
+            self.turn = self.parent.user
+        
+    def update(self, id, image):
+        self.fields[id] = image
+        self.checkwin()
+        if(self.win or self.tie):
+            self.freezegame()
+            self.parent.print_winner(self.winner)
+
+    def freezegame(self):
             for x in self.parent.fields:
                 x.unb()
 

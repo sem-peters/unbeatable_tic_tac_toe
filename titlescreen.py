@@ -29,10 +29,13 @@ class titlescreen:
     
     def click(self, btn):
         self.user = btn
+        
         if(self.user == 'circle'):
             self.ai = 'cross'
+            
         else:
             self.ai = 'circle'
+            
         self.root.destroy()
         
 

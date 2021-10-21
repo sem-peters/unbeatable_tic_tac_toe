@@ -19,7 +19,7 @@ def main():
     scoreboard = threading.Thread(target=sc.run)
     scoreboard.daemon = True
     scoreboard.start()
-    maingui = TicTacToeGUI(ts.user,sc,ts.ai)
+    maingui = TicTacToeGUI(ts.user, ts.ai, sc)
 
     # This thread keeps track whether the scoreboard thread is alive. If it's closed, the entire program should shut down.
     alive_checker_1 = threading.Thread(target=lambda: alive(scoreboard, maingui))
@@ -31,7 +31,7 @@ def main():
         maingui.run()
         sc.refresh()
         if(maingui.play_again):
-            maingui.__init__(ts.user, sc, ts.ai)
+            maingui.__init__(ts.user, ts.ai, sc)
         else:
             maingui.root.destroy()
             quit()

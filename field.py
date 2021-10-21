@@ -36,14 +36,17 @@ class field(Canvas):
         self.canvas.create_image(0,0,anchor=NW, image=self.white)
         self.current_image = "white"
     
+    
     def clickhandler(self, event):
-        if(self.game.turn == "circle" and self.current_image == "white"):
-            self.turn_circle()
-            self.game.switch_turn()
-        elif(self.game.turn == "cross" and self.current_image == "white"):
-            self.turn_cross()
-            self.game.switch_turn()
-        self.game.update(self.id, self.current_image)
+        if(self.game.turn == self.game.user):
+            if(self.current_image == "white"):
+                if(self.game.user == 'circle'):
+                    self.turn_circle()
+                else:
+                    self.turn_cross()
+                self.game.update(self.id, self.current_image)
+                if(not(self.game.win or self.game.tie)):
+                    self.game.switch_turn()
 
 
         
