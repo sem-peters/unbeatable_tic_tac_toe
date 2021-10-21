@@ -2,7 +2,7 @@ from tkinter import *
 from gamelogic import GameLogic
 from field import field
 class TicTacToeGUI(Tk):
-    def __init__(self, user, score):
+    def __init__(self, user, score, ai):
         #this is empty because i got nothin yet
         self.root = Tk()
         self.root.protocol("WM_DELETE_WINDOW", func=self.stop)
@@ -17,16 +17,19 @@ class TicTacToeGUI(Tk):
         # indicating they don't want to play.
 
         self.startinguser = user
+        self.ai = ai
         
         # This determines who starts.
+        print(self.score.counter)
+        
         if((self.startinguser == 'circle') and (self.score.counter % 2 == 0)):
-            self.game = GameLogic(self, 'circle')
+            self.game = GameLogic(self, 'circle', self.startinguser, self.ai)
         elif((self.startinguser == 'circle') and (self.score.counter % 2 != 0)):
-            self.game = GameLogic(self, 'cross')
+            self.game = GameLogic(self, 'cross', self.startinguser, self.ai)
         elif((self.startinguser == 'cross') and (self.score.counter % 2 == 0)):
-            self.game = GameLogic(self, 'cross')
+            self.game = GameLogic(self, 'cross', self.startinguser, self.ai)
         elif((self.startinguser == 'cross') and (self.score.counter % 2 != 0)):
-            self.game = GameLogic(self, 'circle')
+            self.game = GameLogic(self, 'circle', self.startinguser, self.ai)
         else:
             quit()
         
@@ -49,14 +52,14 @@ class TicTacToeGUI(Tk):
         
     def print_winner(self, winner):
         self.score.counter += 1
-        if(winner == 'circle'):
-            winner_label = Label(self.root, text="We have a winner:\nCircle!", font=("Courier", 12), padx=10, pady=5, relief='solid', borderwidth=2)
+        if(winner == self.startinguser):
+            winner_label = Label(self.root, text="We have a winner:\nYou!", font=("Courier", 12), padx=10, pady=5, relief='solid', borderwidth=2)
             winner_label.grid(column=1,row=0)
-            self.score.circle_score += 1
-        elif(winner == 'cross'):
-            winner_label = Label(self.root, text="We have a winner:\nCross!", font=("Courier", 12), padx=10, pady=5, relief='solid', borderwidth=2)
+            self.score.user_score += 1
+        elif(winner == self.ai):
+            winner_label = Label(self.root, text="We have a winner:\nthe Computer!", font=("Courier", 12), padx=10, pady=5, relief='solid', borderwidth=2)
             winner_label.grid(column=1,row=0)
-            self.score.cross_score += 1
+            self.score.ai_score += 1
         else:
             winner_label = Label(self.root, text="We have a tie!", font=("Courier", 12), padx=10, pady=5, relief='solid', borderwidth=2)
             winner_label.grid(column=1,row=0)
@@ -65,6 +68,7 @@ class TicTacToeGUI(Tk):
         stop_button = Button(self.root, text="Quit", command=self.stop).grid(column=1,row=2)
     
     def play(self):
+        
         self.play_again = True
         self.root.destroy()
     def stop(self):

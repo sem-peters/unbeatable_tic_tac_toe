@@ -6,7 +6,7 @@ class titlescreen:
         self.root.resizable(False, False) # Frame is made specifically for certain height and width, not responsive.
         
         self.user = ''
-
+        self.ai = ''
         self.welcome_label = Label(self.root, text="Welcome to TicTacToe!")
         self.cross_circle_label = Label(self.root, text="Do you want to be cross or circle?")
         self.second_label = Label(self.root, text="You begin, but beginning turns alternate.")
@@ -29,6 +29,10 @@ class titlescreen:
     
     def click(self, btn):
         self.user = btn
+        if(self.user == 'circle'):
+            self.ai = 'cross'
+        else:
+            self.ai = 'circle'
         self.root.destroy()
         
 
