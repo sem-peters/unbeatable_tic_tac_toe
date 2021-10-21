@@ -6,7 +6,7 @@ class AI:
         self.image = image
         
     def make_move(self):
-        time.sleep(.1) # to make it feel natural, like the computer is thinking
+        time.sleep(.2) # to make it feel natural, like the computer is thinking
 
         fields = self.parent.fields #fields as inherited from gamelogic
         print("\n")
@@ -24,7 +24,6 @@ class AI:
             print("Random number: ", r)
             
             if(self.image == 'cross'):
-                
                 self.parent.parent.fields[r].turn_cross()
             elif(self.image == 'circle'):
                 self.parent.parent.fields[r].turn_circle()
