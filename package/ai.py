@@ -80,6 +80,12 @@ class AI:
                         elif(self.ai_fields[0] == 2): self.goodmoves = [0,8]
                         elif(self.ai_fields[0] == 6): self.goodmoves = [0,8]
                         else: self.goodmoves = [2,6]
+                elif(self.turn_counter == 4): #Fourth turn, AI's turn. This previously had a bug, so we're fixing it now with this addition.
+                    if all(item in self.user_fields for item in (0,8)) and self.ai_fields.__contains__(4): self.goodmoves = [1,3,5,7]
+                    elif all(item in self.user_fields for item in (2,6)) and self.ai_fields.__contains__(4): self.goodmoves = [1,3,5,7]
+                    else:
+                        print("No good moves implemented, picking at random...")
+                        self.goodmoves = self.openfields
                 else:
                     print("No good moves implemented, picking at random... ")
                     self.goodmoves = self.openfields
