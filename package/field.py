@@ -1,5 +1,5 @@
 from tkinter import *
-from gamelogic import GameLogic
+from package.gamelogic import GameLogic
 
 # The Field object inherits the Canvas class from tkinter,
 # There are 9 fields. Each begins 'white', they can change to 'cross' and 'circle'.
@@ -17,9 +17,9 @@ class field(Canvas):
         self.canvas = Canvas(self.master, width=self.width, height=self.height)
         self.canvas.grid(column=self.c, row=self.r)
 
-        self.white = PhotoImage(master=self.master, file="images/white.png")
-        self.cross = PhotoImage(master=self.master, file="images/cross.png")
-        self.circle = PhotoImage(master=self.master, file="images/circle.png")
+        self.white = PhotoImage(master=self.master, file="package/images/white.png")
+        self.cross = PhotoImage(master=self.master, file="package/images/cross.png")
+        self.circle = PhotoImage(master=self.master, file="package/images/circle.png")
 
         self.canvas.create_image(0,0,anchor=NW, image=self.white)
         self.canvas.bind("<Button-1>", self.clickhandler)

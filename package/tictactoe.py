@@ -1,6 +1,6 @@
 from tkinter import *
-from gamelogic import GameLogic
-from field import field
+from package.gamelogic import GameLogic
+from package.field import field
 class TicTacToeGUI(Tk):
     def __init__(self, user, ai, score):
         

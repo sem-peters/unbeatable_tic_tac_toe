@@ -1,5 +1,5 @@
 from tkinter import Label
-from ai import AI
+from package.ai import AI
 class GameLogic:
     def __init__(self, root, startinguser, user, ai):
         self.parent = root
