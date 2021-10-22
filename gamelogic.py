@@ -14,15 +14,15 @@ class GameLogic:
         self.win = False
         self.tie = False
         self.fields = ['white','white','white','white','white','white','white','white','white']
+        self.opponentAI = AI(self, self.ai)
         self.first_turn()
 
     def first_turn(self):
-        if(self.turn == self.ai):
-            self.opponentAI = AI(self, self.ai)
+        if(self.turn == self.ai):     
             self.opponentAI.make_move()
     def switch_turn(self):
-
-        self.opponentAI = AI(self, self.ai)
+        self.opponentAI.turn_counter += 1
+        
         if self.turn == self.parent.user:
             self.turn = self.parent.ai
             self.opponentAI.make_move()

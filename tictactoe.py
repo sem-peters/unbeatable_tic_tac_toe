@@ -36,7 +36,6 @@ class TicTacToeGUI(Tk):
             self.field_5, self.field_6, self.field_7,self.field_8, self.field_9]
 
         # This determines who starts.
-        print(self.score.counter)
         if(self.score.counter % 2 == 0):
             self.game = GameLogic(self, self.user, self.user, self.ai)
         elif(self.score.counter % 2 != 0):
