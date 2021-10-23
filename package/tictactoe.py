@@ -5,9 +5,10 @@ class TicTacToeGUI(Tk):
     def __init__(self, user, ai, score):
         
         self.root = Tk()
+        self.root.geometry('611x611+50+50')
         self.root.protocol("WM_DELETE_WINDOW", func=self.stop)
         self.root.title("TicTacToe by Sem Peters")
-        self.root.resizable(False, False) # Frame is made specifically for certain height and width, not responsive.
+        #self.root.resizable(False, False) # Frame is made specifically for certain height and width, not responsive.
         
         self.score = score
         self.play_again = False
