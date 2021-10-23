@@ -80,9 +80,23 @@ class AI:
                         elif(self.ai_fields[0] == 2): self.goodmoves = [0,8]
                         elif(self.ai_fields[0] == 6): self.goodmoves = [0,8]
                         else: self.goodmoves = [2,6]
-                elif(self.turn_counter == 4): #Fourth turn, AI's turn. This previously had a bug, so we're fixing it now with this addition.
+                elif(self.turn_counter == 4): #Fourth turn, AI's turn. This previously had TWO!!! bugs, so we're fixing it now with this addition.
+                    # These are some common almost winning situations for the user on turn four. We have to force a tie on each of them.
+
+                    # Corner -> Opposing Corner play by User, force a tie:
                     if all(item in self.user_fields for item in (0,8)) and self.ai_fields.__contains__(4): self.goodmoves = [1,3,5,7]
                     elif all(item in self.user_fields for item in (2,6)) and self.ai_fields.__contains__(4): self.goodmoves = [1,3,5,7]
+
+                    # Corner -> Opposing side, mid field play by User, force a tie:
+                    elif all(item in self.user_fields for item in (0,5)) and self.ai_fields.__contains__(4): self.goodmoves = [2]
+                    elif all(item in self.user_fields for item in (0,7)) and self.ai_fields.__contains__(4): self.goodmoves = [6]
+                    elif all(item in self.user_fields for item in (2,3)) and self.ai_fields.__contains__(4): self.goodmoves = [0]
+                    elif all(item in self.user_fields for item in (2,7)) and self.ai_fields.__contains__(4): self.goodmoves = [8]
+                    elif all(item in self.user_fields for item in (6,1)) and self.ai_fields.__contains__(4): self.goodmoves = [0]
+                    elif all(item in self.user_fields for item in (6,5)) and self.ai_fields.__contains__(4): self.goodmoves = [8]
+                    elif all(item in self.user_fields for item in (8,3)) and self.ai_fields.__contains__(4): self.goodmoves = [6]
+                    elif all(item in self.user_fields for item in (8,1)) and self.ai_fields.__contains__(4): self.goodmoves = [2]
+
                     else:
                         print("No good moves implemented, picking at random...")
                         self.goodmoves = self.openfields
