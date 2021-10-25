@@ -5,7 +5,6 @@ from package.titlescreen import titlescreen
 from package.score import score
 import threading
 import time
-#Starts up the TicTacToe GUI, which is currently the only GUI screen in use.
 errormessage = "Ungraceful exit..."
 def main():
     try:
